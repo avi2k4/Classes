@@ -13,13 +13,8 @@
 
 using namespace std;
 
-// prevents infinite loop when using cin
-void clearInput() {
-	cin.clear();
-	fflush(stdin);
-}
-
 // function prototypes
+void clearInput();
 void add();
 void search();
 void del();
@@ -55,16 +50,20 @@ int main() {
 	return 0;
 }
 
+void clearInput() {
+	cin.clear();
+	cin.ignore();
+	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
 // handles adding media sequence
 void add() {
 	cout << "\nWhat kind of media would you like to add?" << endl;
-	cout << "\nOptions:\n>[VG] for video game\n>[MUSIC] for music\n>[MOVIE] for movie\n" << endl;
+	cout << "\nOptions:\n>[VG] for video game\n>[MUSIC] for music\n>[MOVIE] for movie" << endl;
 
 	char add_option_input[5];
 	clearInput();
 	cin >> add_option_input;
-
-	clearInput();
 
 	// getting title
 	cout << "\nWhat is the title?" << endl;
@@ -78,7 +77,7 @@ void add() {
 	int year_input;
 
 	// ensures year is integer
-	while (true) {
+	while (true) {	
 		clearInput();
 		cin >> year_input;
 
