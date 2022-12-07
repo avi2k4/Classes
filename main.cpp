@@ -32,6 +32,7 @@ int main() {
 	while (true) {
 		char input[7];
 		cin >> input;
+		clearInput();
 
 		if (strcmp(input, "ADD") == 0) {
 			add();
@@ -51,9 +52,7 @@ int main() {
 }
 
 void clearInput() {
-	cin.clear();
-	cin.ignore();
-	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.ignore(25, '\n');
 }
 
 // handles adding media sequence
@@ -62,32 +61,20 @@ void add() {
 	cout << "\nOptions:\n>[VG] for video game\n>[MUSIC] for music\n>[MOVIE] for movie" << endl;
 
 	char add_option_input[5];
-	clearInput();
 	cin >> add_option_input;
+	clearInput();
 
 	// getting title
 	cout << "\nWhat is the title?" << endl;
 	char title_input[25];
-	clearInput();
 	cin.get(title_input, sizeof(title_input));
 	cin.get();
 
 	// getting year
 	cout << "\nWhat is the year?" << endl;
 	int year_input;
-
-	// ensures year is integer
-	while (true) {	
-		clearInput();
-		cin >> year_input;
-
-		if (cin.fail() == 0) {
-			break;
-		}
-		else {
-			cout << "The year must be an integer!" << endl;
-		}
-	}
+	cin >> year_input;
+	clearInput();
 
 	if (strcmp(add_option_input, "VG") == 0) {
 		video_game* vg = new video_game();
@@ -101,7 +88,6 @@ void add() {
 		// setting publisher
 		cout << "\nWho is the publisher?" << endl;
 		char publisher_input[25];
-		clearInput();
 		cin.get(publisher_input, sizeof(publisher_input));
 		cin.get();
 		vg->setPublisher(publisher_input);
@@ -109,19 +95,8 @@ void add() {
 		// setting rating
 		cout << "\nWhat is the rating?" << endl;
 		double rating_input;
-
-		// ensures rating is double
-		while (true) {
-			clearInput();
-			cin >> rating_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The input must be a whole/decimal number!" << endl;
-			}
-		}
+		cin >> rating_input;
+		clearInput();
 
 		vg->setRating(rating_input);
 
@@ -140,7 +115,6 @@ void add() {
 		// setting publisher
 		cout << "\nWho is the publisher?" << endl;
 		char publisher_input[25];
-		clearInput();
 		cin.get(publisher_input, sizeof(publisher_input));
 		cin.get();
 		m->setPublisher(publisher_input);
@@ -148,7 +122,6 @@ void add() {
 		// setting artist
 		cout << "\nWho is the artist?" << endl;
 		char artist_input[25];
-		clearInput();
 		cin.get(artist_input, sizeof(artist_input));
 		cin.get();
 		m->setArtist(artist_input);
@@ -156,19 +129,8 @@ void add() {
 		// setting duration
 		cout << "\nWhat is the duration in minutes?" << endl;
 		double duration_input;
-
-		// ensures duration is integer
-		while (true) {
-			clearInput();
-			cin >> duration_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The input must be an integer!" << endl;
-			}
-		}
+		cin >> duration_input;
+		clearInput();
 
 		m->setDuration(duration_input);
 
@@ -187,7 +149,6 @@ void add() {
 		// setting director
 		cout << "\nWho is the director?" << endl;
 		char director_input[25];
-		clearInput();
 		cin.get(director_input, sizeof(director_input));
 		cin.get();
 		m->setDirector(director_input);
@@ -195,38 +156,16 @@ void add() {
 		// setting rating
 		cout << "\nWhat is the rating?" << endl;
 		double rating_input;
-
-		// ensures rating is double
-		while (true) {
-			clearInput();
-			cin >> rating_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The input must be a whole/decimal number!" << endl;
-			}
-		}
+		cin >> rating_input;
+		clearInput();
 
 		m->setRating(rating_input);
 
 		// setting duration
 		cout << "\nWhat is the duration in minutes?" << endl;
 		double duration_input;
-
-		// ensures duration is integer
-		while (true) {
-			clearInput();
-			cin >> duration_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The input must be an integer!" << endl;
-			}
-		}
+		cin >> duration_input;
+		clearInput();
 
 		m->setDuration(duration_input);
 
@@ -241,14 +180,13 @@ void search() {
 	cout << "Options:\n>[TITLE] by title\n>[YEAR] by year" << endl;
 			
 	char search_option_input[5];
-	clearInput();
 	cin >> search_option_input;
+	clearInput();
 
 	if (strcmp(search_option_input, "TITLE") == 0) { // if the user wants to search by title
 		cout << "\nEnter the title of the media you are looking for." << endl;
 			
 		char search_title_input[25];
-		clearInput();
 		cin.get(search_title_input, sizeof(search_title_input));
 		cin.get();
 
@@ -262,19 +200,8 @@ void search() {
 		cout << "\nEnter the year of the media you are looking for." << endl;
 
 		int search_year_input;
-
-		// ensures year is integer
-		while (true) {
-			clearInput();
-			cin >> search_year_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The year must be an integer!" << endl;
-			}
-		}
+		cin >> search_year_input;
+		clearInput();
 
 		for (std::vector<media*>::iterator it = db.begin(); it != db.end(); ++it) {
 			if ((*it)->getYear() == search_year_input) { // check if the years are the same
@@ -290,14 +217,13 @@ void del() {
 	cout << "Options:\n>[TITLE] by title\n>[YEAR] by year" << endl;
 			
 	char delete_option_input[5];
-	clearInput();
 	cin >> delete_option_input;
+	clearInput();
 
 	if (strcmp(delete_option_input, "TITLE") == 0) { // if the user wants to delete by title
 		cout << "\nEnter the title of the media you want to delete." << endl;
 				
 		char search_title_input[25];
-		clearInput();
 		cin.get(search_title_input, sizeof(search_title_input));
 		cin.get();
 
@@ -327,18 +253,8 @@ void del() {
 		cout << "\nEnter the year of the media you are want to delete." << endl;
 
 		int search_year_input;
-
-		while (true) {
-			clearInput();
-			cin >> search_year_input;
-
-			if (cin.fail() == 0) {
-				break;
-			}
-			else {
-				cout << "The year must be an integer!" << endl;
-			}
-		}
+		cin >> search_year_input;
+		clearInput();
 
 		for (std::vector<media*>::iterator it = db.begin(); it != db.end(); ++it) {
 			if ((*it)->getYear() == search_year_input) { // check if years are the same
